@@ -266,9 +266,8 @@ if exists('g:started_by_firenvim')
    set background=light
    set wrap linebreak nolist
 else
-   set guifont=DejaVu\ Sans\ Mono:h16
    hi Normal guibg=#1b1b1c
-   set guifont=DejaVu\ Sans\ Mono:h19
+   set guifont=DejaVu\ Sans\ Mono:h20
 endif
 
 " add
@@ -281,3 +280,23 @@ silent! xmap <unique> sd <Plug>(operator-sandwich-delete)
 
 " replace
 silent! xmap <unique> sr <Plug>(operator-sandwich-replace)
+
+hi TermColor0 guifg=#1b1b1c
+hi TermColor1 guifg=#fb9fb1
+hi TermColor2 guifg=#77c267
+hi TermColor3 guifg=#ddb26f
+hi TermColor4 guifg=#6fc2ef
+hi TermColor5 guifg=#e1a3ee
+hi TermColor6 guifg=#12cfc0
+hi TermColor7 guifg=#f5f5f5
+
+let g:terminal_color_0 = '#1b1b1c'
+let g:terminal_color_1 = '#fb9fb1'
+let g:terminal_color_2 = '#77c267'
+let g:terminal_color_3 = '#ddb26f'
+let g:terminal_color_4 = '#6fc2ef'
+let g:terminal_color_5 = '#e1a3ee'
+let g:terminal_color_6 = '#12cfc0'
+let g:terminal_color_7 = '#f5f5f5'
+
+let g:neovide_cursor_animation_length = 0.08

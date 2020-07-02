@@ -3,6 +3,7 @@
 " Webpage:     https://github.com/axvr/photon.vim
 " Description: A minimal and elegant dark colour scheme for Vim.
 " Licence:     MIT (2019)
+" Modified by Mikail Khan
 
 hi clear
 
@@ -13,18 +14,18 @@ endif
 let colors_name = "photon"
 
 if ($TERM =~ '256' || &t_Co >= 256) || has("gui_running")
-    hi Normal ctermbg=NONE ctermfg=252 cterm=NONE guibg=#262626 guifg=#c6c6c6 gui=NONE
+    hi Normal ctermbg=NONE ctermfg=252 cterm=NONE guibg=NONE guifg=#c6c6c6 gui=NONE
 
     set background=dark
 
     hi NonText ctermbg=NONE ctermfg=237 cterm=NONE guibg=NONE guifg=#3a3a3a gui=NONE
-    hi Comment ctermbg=NONE ctermfg=245cterm=NONE guibg=NONE guifg=#626262 gui=NONE
+    hi Comment ctermbg=NONE ctermfg=245 cterm=NONE guibg=NONE guifg=#8a8a8a gui=NONE
     hi Constant ctermbg=NONE ctermfg=140 cterm=NONE guibg=NONE guifg=#af87d7 gui=NONE
     hi Identifier ctermbg=NONE ctermfg=251 cterm=NONE guibg=NONE guifg=#c6c6c6 gui=NONE
-    hi Statement ctermbg=NONE ctermfg=166 cterm=NONE guibg=NONE guifg=#767676 gui=NONE
+    hi Statement ctermbg=NONE ctermfg=166 cterm=NONE guibg=NONE guifg=#d75f00 gui=NONE
     hi Operator ctermbg=NONE ctermfg=251 cterm=bold guibg=NONE guifg=#c6c6c6 gui=bold
-    hi PreProc ctermbg=NONE ctermfg=172 cterm=NONE guibg=NONE guifg=#767676 gui=NONE
-    hi Type ctermbg=NONE ctermfg=140 cterm=NONE guibg=NONE guifg=#c6c6c6 gui=NONE
+    hi PreProc ctermbg=NONE ctermfg=172 cterm=NONE guibg=NONE guifg=#d78700 gui=NONE
+    hi Type ctermbg=NONE ctermfg=140 cterm=NONE guibg=NONE guifg=#af87d7 gui=NONE
     hi Special ctermbg=NONE ctermfg=243 cterm=NONE guibg=NONE guifg=#767676 gui=NONE
     hi Error ctermbg=NONE ctermfg=132 cterm=NONE guibg=NONE guifg=#af5f87 gui=NONE
     hi Warning ctermbg=NONE ctermfg=136 cterm=NONE guibg=NONE guifg=#af8700 gui=NONE
