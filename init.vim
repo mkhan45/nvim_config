@@ -7,38 +7,13 @@ set foldlevelstart=99
 
 set nocompatible
 filetype off
-" set rtp+=~/.vim/bundle/vundle/
-" call vundle#rc()
-" Plugin 'gmarik/vundle'
-
-" " We could also add repositories with a ".git" extension
-" Plugin 'gmarik/Vundle.vim'
-" Plugin 'glacambre/firenvim'
-" Plugin 'pangloss/vim-javascript'
-" Plugin 'jpalardy/vim-slime'
-" Plugin 'machakann/vim-sandwich'
-" Plugin 'tbastos/vim-lua'
-" Plugin 'tpope/vim-commentary'
-" Plugin 'udalov/kotlin-vim'
-" Plugin 'easymotion/vim-easymotion'
-" Plugin 'Shougo/denite.nvim'
-" Plugin 'christoomey/vim-system-copy'
-" Plugin 'lervag/vimtex'
-" Plugin 'NLKNguyen/papercolor-theme'
-" Plugin 'rust-lang/rust.vim'
-" Plugin 'tikhomirov/vim-glsl'
-" Plugin 'calviken/vim-gdscript3'
-" Plugin 'neovimhaskell/haskell-vim'
-" Plugin 'junegunn/goyo.vim'
-" " Plugin 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-" Plugin 'neoclide/coc.nvim', {'branch' : 'release'}
 
 call plug#begin('~/.vim/plugged')
 Plug 'glacambre/firenvim'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-commentary'
 Plug 'easymotion/vim-easymotion'
-Plug 'Shougo/denite.nvim'
+" Plug 'Shougo/denite.nvim'
 Plug 'christoomey/vim-system-copy'
 Plug 'lervag/vimtex'
 Plug 'NLKNguyen/papercolor-theme'
@@ -46,7 +21,10 @@ Plug 'rust-lang/rust.vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'calviken/vim-gdscript3'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'JuliaEditorSupport/julia-vim'
 Plug 'neoclide/coc.nvim', {'branch' : 'release'}
 call plug#end()
 
@@ -99,6 +77,8 @@ let g:python_recommended_style = 0
 
 let g:UltiSnipsExpandTrigger="<tab>"
 
+let g:tex_flavor = 'latex'
+
 "
 let g:coc_global_extensions = [
    \ 'coc-snippets',
@@ -118,58 +98,66 @@ let g:coc_global_extensions = [
    \]
 
 " denite stuff
-autocmd FileType denite call s:denite_my_settings()
+" autocmd FileType denite call s:denite_my_settings()
 
-function! s:denite_my_settings() abort
-    nnoremap <silent><buffer><expr> <CR>
-                \ denite#do_map('do_action', 'open')
-    nnoremap <silent><buffer><expr> d
-                \ denite#do_map('do_action', 'delete')
-    nnoremap <silent><buffer><expr> p
-                \ denite#do_map('do_action', 'preview')
-    nnoremap <silent><buffer><expr> q
-                \ denite#do_map('quit')
-    nnoremap <silent><buffer><expr> i
-                \ denite#do_map('open_filter_buffer')
-    nnoremap <silent><buffer><expr> <Space>
-                \ denite#do_map('toggle_select').'j'
-endfunction
+" function! s:denite_my_settings() abort
+"     nnoremap <silent><buffer><expr> <CR>
+"                 \ denite#do_map('do_action', 'open')
+"     nnoremap <silent><buffer><expr> d
+"                 \ denite#do_map('do_action', 'delete')
+"     nnoremap <silent><buffer><expr> p
+"                 \ denite#do_map('do_action', 'preview')
+"     nnoremap <silent><buffer><expr> q
+"                 \ denite#do_map('quit')
+"     nnoremap <silent><buffer><expr> i
+"                 \ denite#do_map('open_filter_buffer')
+"     nnoremap <silent><buffer><expr> <Space>
+"                 \ denite#do_map('toggle_select').'j'
+" endfunction
 
-call denite#custom#var('grep', 'command', ['rg'])
-call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
+" call denite#custom#var('grep', 'command', ['rg'])
+" call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
 
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-call denite#custom#var('file/rec', 'command', ['rg', '--files', '--block-buffered'])
+" call denite#custom#var('grep', 'recursive_opts', [])
+" call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+" call denite#custom#var('grep', 'separator', ['--'])
+" call denite#custom#var('grep', 'final_opts', [])
+" call denite#custom#var('file/rec', 'command', ['rg', '--files', '--block-buffered'])
 
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-j>',
-            \ '<denite:move_to_next_line>',
-            \ 'noremap'
-            \)
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-k>',
-            \ '<denite:move_to_previous_line>',
-            \ 'noremap'
-            \)
-call denite#custom#map('normal', '<C-v>', '<denite:do_action:vsplit>',
-            \'noremap')
+" call denite#custom#map(
+"             \ 'insert',
+"             \ '<C-j>',
+"             \ '<denite:move_to_next_line>',
+"             \ 'noremap'
+"             \)
+" call denite#custom#map(
+"             \ 'insert',
+"             \ '<C-k>',
+"             \ '<denite:move_to_previous_line>',
+"             \ 'noremap'
+"             \)
+" call denite#custom#map('normal', '<C-v>', '<denite:do_action:vsplit>',
+"             \'noremap')
 
-" nmap <C-p> :Denite file/rec -winwidth=100 -winheight=20 -split=floating<CR>i
-nmap <C-p> :Denite file/rec<CR>i
-nmap <S-p> :Denite grep:. -no-empty -winwidth=100 -winheight=20 -split=floating<CR>
+" " nmap <C-p> :Denite file/rec -winwidth=100 -winheight=20 -split=floating<CR>i
+" nmap <C-p> :Denite file/rec<CR>i
+" nmap <S-p> :Denite grep:. -no-empty -winwidth=80 -winheight=20 -split=floating<CR>
 
-nmap <Leader>t :TagbarToggle<CR>
+
+nmap <S-p> :Rg<CR>
+nmap <C-p> :GFiles<CR>
 
 function! s:cocActionsOpenFromSelected(type) abort
    execute 'CocCommand actions.open ' . a:type
 endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+" xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+" nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 imap <C-l> <Plug>(coc-snippets-expand)
 nmap <F2> <Plug>(coc-rename)
@@ -187,6 +175,7 @@ endfunction
 
 
 au BufRead,BufNewFile *.md set filetype=md
+au BufRead,BufNewFile *.jl set filetype=julia
 
 autocmd Filetype rust source ~/.config/nvim/rust.vim
 autocmd Filetype c source ~/.config/nvim/c.vim
@@ -267,7 +256,8 @@ if exists('g:started_by_firenvim')
    set wrap linebreak nolist
 else
    hi Normal guibg=#1b1b1c
-   set guifont=DejaVu\ Sans\ Mono:h20
+   " set guifont=DejaVu\ Sans\ Mono:h20
+   set guifont=JetBrains\ Mono:h20
 endif
 
 " add
