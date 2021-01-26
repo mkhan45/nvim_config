@@ -13,7 +13,6 @@ Plug 'glacambre/firenvim'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-commentary'
 Plug 'easymotion/vim-easymotion'
-" Plug 'Shougo/denite.nvim'
 Plug 'christoomey/vim-system-copy'
 Plug 'lervag/vimtex'
 Plug 'NLKNguyen/papercolor-theme'
@@ -31,7 +30,6 @@ call plug#end()
 filetype plugin indent on
 
 " call coc#util#install()
-"
 
 let g:slime_target = "tmux"
 
@@ -97,61 +95,12 @@ let g:coc_global_extensions = [
    \ 'coc-actions',
    \]
 
-" denite stuff
-" autocmd FileType denite call s:denite_my_settings()
-
-" function! s:denite_my_settings() abort
-"     nnoremap <silent><buffer><expr> <CR>
-"                 \ denite#do_map('do_action', 'open')
-"     nnoremap <silent><buffer><expr> d
-"                 \ denite#do_map('do_action', 'delete')
-"     nnoremap <silent><buffer><expr> p
-"                 \ denite#do_map('do_action', 'preview')
-"     nnoremap <silent><buffer><expr> q
-"                 \ denite#do_map('quit')
-"     nnoremap <silent><buffer><expr> i
-"                 \ denite#do_map('open_filter_buffer')
-"     nnoremap <silent><buffer><expr> <Space>
-"                 \ denite#do_map('toggle_select').'j'
-" endfunction
-
-" call denite#custom#var('grep', 'command', ['rg'])
-" call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
-
-" call denite#custom#var('grep', 'recursive_opts', [])
-" call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-" call denite#custom#var('grep', 'separator', ['--'])
-" call denite#custom#var('grep', 'final_opts', [])
-" call denite#custom#var('file/rec', 'command', ['rg', '--files', '--block-buffered'])
-
-" call denite#custom#map(
-"             \ 'insert',
-"             \ '<C-j>',
-"             \ '<denite:move_to_next_line>',
-"             \ 'noremap'
-"             \)
-" call denite#custom#map(
-"             \ 'insert',
-"             \ '<C-k>',
-"             \ '<denite:move_to_previous_line>',
-"             \ 'noremap'
-"             \)
-" call denite#custom#map('normal', '<C-v>', '<denite:do_action:vsplit>',
-"             \'noremap')
-
-" " nmap <C-p> :Denite file/rec -winwidth=100 -winheight=20 -split=floating<CR>i
-" nmap <C-p> :Denite file/rec<CR>i
-" nmap <S-p> :Denite grep:. -no-empty -winwidth=80 -winheight=20 -split=floating<CR>
-
-
 nmap <S-p> :Rg<CR>
 nmap <C-p> :GFiles<CR>
 
 function! s:cocActionsOpenFromSelected(type) abort
    execute 'CocCommand actions.open ' . a:type
 endfunction
-" xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-" nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -256,7 +205,6 @@ if exists('g:started_by_firenvim')
    set wrap linebreak nolist
 else
    hi Normal guibg=#1b1b1c
-   " set guifont=DejaVu\ Sans\ Mono:h20
    set guifont=JetBrains\ Mono:h20
 endif
 
