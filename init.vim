@@ -25,6 +25,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'neoclide/coc.nvim', {'branch' : 'release'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'romgrk/nvim-treesitter-context'
+Plug 'elixir-editors/vim-elixir'
+Plug 'puremourning/vimspector'
 call plug#end()
 
 filetype plugin indent on
